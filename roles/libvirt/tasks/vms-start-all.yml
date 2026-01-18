@@ -1,0 +1,8 @@
+- ansible.builtin.import_tasks: vms-list-all.yml
+
+
+- name: Issuing start command to all defined VMs
+  community.libvirt.virt:
+    state: running
+    name: "{{ item }}"
+  loop: "{{ all_vms.list_vms }}"

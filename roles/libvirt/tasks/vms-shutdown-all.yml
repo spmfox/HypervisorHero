@@ -1,0 +1,7 @@
+- ansible.builtin.import_tasks: vms-list-running.yml
+
+- name: Issuing shutdown command to all running VMs
+  community.libvirt.virt:
+    state: shutdown
+    name: "{{ item }}"
+  loop: "{{ running_vms.list_vms }}"

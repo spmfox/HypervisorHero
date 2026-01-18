@@ -1,0 +1,20 @@
+- block:
+    - ansible.builtin.import_tasks: vms-list-all.yml
+    - ansible.builtin.import_tasks: vms-start-all.yml
+  tags:
+    - never
+    - start
+
+- block:
+    - ansible.builtin.import_tasks: vms-list-running.yml
+    - ansible.builtin.import_tasks: vms-shutdown-all.yml
+  tags:
+    - never
+    - stop
+
+- block:
+    - ansible.builtin.import_tasks: pools-list-inactive.yml
+    - ansible.builtin.import_tasks: pools-undefine-inactive.yml
+  tags:
+    - never
+    - prune-storage-pools
