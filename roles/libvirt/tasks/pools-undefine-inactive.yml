@@ -1,0 +1,7 @@
+- ansible.builtin.import_tasks: pools-list-inactive.yml
+
+- name: Undefine inactive storage pools
+  community.libvirt.virt_pool:
+    command: undefine
+    name: "{{ item }}"
+  loop: "{{ inactive_pools.list_pools }}"
