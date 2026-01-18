@@ -1,4 +1,4 @@
 - name: Discover all VMs
   community.libvirt.virt:
     command: list_vms
-    register: all_vms
+  register: all_vms
