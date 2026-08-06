@@ -2,8 +2,8 @@
 Description=Timer for sanoid.service
 
 [Timer]
-OnCalendar=*-*-* *:0,15,30,45:00
 Unit=sanoid.service
+{{ timer_sanoid }}
 
 [Install]
 WantedBy=basic.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Sanoid service
+OnFailure=failure-notification@%i.service
+ConditionPathExists={{ sanoid_path_binary }}
+ConditionPathExists={{ sanoid_path_config }}
+
+[Service]
+Type=oneshot
+{% for sanoid_job in sanoid_jobs -%}
+ExecStart={{ sanoid_path_binary }} --configdir {{ sanoid_path_config }} {{ sanoid_job }}
+{% endfor %}

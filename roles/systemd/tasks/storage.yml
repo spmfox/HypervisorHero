@@ -1,0 +1,23 @@
+- name: Create disk-check service and timer
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+  loop:
+    - disk-check.service
+    - disk-check.timer
+  notify:
+    - Reload systemd daemon
+    - Enable disk-check.timer
+  when: disks is defined
+
+- name: Create disk-scrub service and timer
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+  loop:
+    - disk-scrub.service
+    - disk-scrub.timer
+  notify:
+    - Reload systemd daemon
+    - Enable disk-scrub.timer
+  when: disks is defined or pools is defined

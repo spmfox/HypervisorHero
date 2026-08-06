@@ -1,0 +1,14 @@
+- name: Create syncoid service and timer
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+  loop:
+    - syncoid.service
+    - syncoid.timer
+  notify:
+    - Reload systemd daemon
+    - Enable syncoid.timer
+  when:
+    - syncoid_path_binary is defined
+    - syncoid_jobs is defined
+

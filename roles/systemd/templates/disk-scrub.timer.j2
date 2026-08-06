@@ -2,8 +2,8 @@
 Description=Timer for disk-scrub.service
 
 [Timer]
-OnCalendar=Sun *-*-* 01:00:00
 Unit=disk-scrub.service
+{{ timer_disk_scrub }}
 
 [Install]
 WantedBy=basic.target

@@ -1,0 +1,54 @@
+### Examples ###
+
+# Specify disks as they are defined in /dev/disk/by-id/
+# This is used by disk-check.service and disk-scrub.service
+# disks:
+#   - "ata-WDC-WDxxyy"
+#   - "ata-WD_easystore_xxyy"
+#
+#
+# Specify zpools by name
+# This is used by disk-scrub.service
+# pools:
+#   - "pool1"
+#   - "pool2"
+#
+#
+# Specify Sanoid binary path, config file, and jobs
+# This is used by sanoid.timer and sanoid.service
+# sanoid_path_binary: /usr/local/bin/sanoid
+# sanoid_path_config: /etc/sanoid
+# sanoid_jobs:
+#   - "--cron --verbose"
+#   - "--monitor-capacity"
+#   - "--monitor-health"
+#   - "--monitor-snapshots"
+#
+#
+# Specify Syncoid binary path and jobs
+# syncoid_path_binary: /usr/local/bin/syncoid
+# syncoid_jobs:
+#   - "pool1 pool2 --recursive"
+
+### Defaults ###
+
+timer_disk_check: |
+  OnBootSec=120s
+  OnUnitActiveSec=24h
+
+timer_disk_scrub: |
+  OnCalendar=Sun *-*-* 01:00:00
+
+timer_sanoid: |
+  OnCalendar=*-*-* *:0,15,30,45:00
+
+timer_syncoid: |
+  OnBootSec=3h
+  OnUnitActiveSec=6h
+
+sanoid_jobs:
+  - "--cron --verbose"
+  - "--monitor-capacity"
+  - "--monitor-health"
+  - "--monitor-snapshots"
+

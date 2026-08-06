@@ -1,0 +1,27 @@
+- name: Reload systemd daemon
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Enable disk-check.timer
+  ansible.builtin.service:
+    name: disk-check.timer
+    state: started
+    enabled: true
+
+- name: Enable disk-scrub.timer
+  ansible.builtin.service:
+    name: disk-scrub.timer
+    state: started
+    enabled: true
+
+- name: Enable sanoid.timer
+  ansible.builtin.service:
+    name: sanoid.timer
+    state: started
+    enabled: true
+
+- name: Enable syncoid.timer
+  ansible.builtin.service:
+    name: syncoid.timer
+    state: started
+    enabled: true

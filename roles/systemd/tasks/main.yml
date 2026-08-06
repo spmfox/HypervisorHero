@@ -1,0 +1,4 @@
+- ansible.builtin.import_tasks: failures.yml
+- ansible.builtin.import_tasks: storage.yml
+- ansible.builtin.import_tasks: sanoid.yml
+- ansible.builtin.import_tasks: syncoid.yml

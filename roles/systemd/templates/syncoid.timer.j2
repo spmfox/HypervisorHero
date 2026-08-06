@@ -2,10 +2,8 @@
 Description=Timer for syncoid.service
 
 [Timer]
-#OnCalendar=*-*-* 03:00:00
-OnBootSec=3h
-OnUnitActiveSec=6h
 Unit=syncoid.service
+{{ timer_syncoid }}
 
 [Install]
 WantedBy=basic.target
